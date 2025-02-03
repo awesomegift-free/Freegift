@@ -65,74 +65,11 @@
             padding: 1rem;
             text-align: center;
         }
-        /* Borde animado con "bujillas" */
-        @keyframes bujilla {
-            0%, 100% { opacity: 0.3; }
-            50% { opacity: 1; }
-        }
-        .borde-animado {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            border-radius: 10px;
-            border: 2px solid transparent;
-            box-shadow: 0 0 10px rgba(255, 223, 0, 0.5);
-            animation: bujilla 1.5s infinite;
-        }
-        .borde-animado::before,
-        .borde-animado::after,
-        .borde-animado .punto {
-            content: '';
-            position: absolute;
-            width: 10px;
-            height: 10px;
-            background: gold;
-            border-radius: 50%;
-            animation: bujilla 1.5s infinite;
-        }
-        .borde-animado::before {
-            top: -5px;
-            left: -5px;
-        }
-        .borde-animado::after {
-            bottom: -5px;
-            right: -5px;
-        }
-        .borde-animado .punto {
-            top: -5px;
-            right: -5px;
-        }
-        .borde-animado .punto:nth-child(3) {
-            bottom: -5px;
-            left: -5px;
-        }
-        .borde-animado .punto:nth-child(4) {
-            top: 50%;
-            left: -5px;
-            transform: translateY(-50%);
-        }
-        .borde-animado .punto:nth-child(5) {
-            top: 50%;
-            right: -5px;
-            transform: translateY(-50%);
-        }
-        .borde-animado .punto:nth-child(6) {
-            top: -5px;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-        .borde-animado .punto:nth-child(7) {
-            bottom: -5px;
-            left: 50%;
-            transform: translateX(-50%);
-        }
     </style>
 </head>
 <body>
     <!-- Navbar -->
-    <nav class="navbar is-link is-light" role="navigation" aria-label="main navigation">
+    <nav class="navbar is-link" role="navigation" aria-label="main navigation">
         <div class="navbar-brand">
             <a class="navbar-item" href="#">
                 <img src="https://www.liblogo.com/img-logo/ti6188t63b-tigo-logo-tigo-logo-.png" alt="Tigo Logo">
@@ -170,15 +107,6 @@
             <h1 class="title">Carrusel de Premios</h1>
             <p class="mensaje-tigo">Con Tigo ganas más</p>
             <div id="carrusel">
-                <div class="borde-animado">
-                    <div class="punto"></div>
-                    <div class="punto"></div>
-                    <div class="punto"></div>
-                    <div class="punto"></div>
-                    <div class="punto"></div>
-                    <div class="punto"></div>
-                    <div class="punto"></div>
-                </div>
                 <div id="carrusel-container">
                     <div class="opcion" style="background-color: #FF5733;">Recargas</div>
                     <div class="opcion" style="background-color: #33FF57;">Internet</div>
