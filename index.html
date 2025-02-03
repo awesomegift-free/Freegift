@@ -18,6 +18,7 @@
             margin: 20px auto;
             background-color: #f5f5f5;
             padding: 20px;
+            position: relative;
         }
         .opcion {
             display: inline-block;
@@ -34,9 +35,9 @@
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-        .opcion:hover {
-            transform: scale(1.1);
-            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+        .opcion.centro {
+            transform: scale(1.2) rotate(5deg);
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
         }
         #carrusel-container {
             display: inline-block;
@@ -63,6 +64,40 @@
             background-color: #f5f5f5;
             padding: 1rem;
             text-align: center;
+        }
+        /* Borde animado con "bujillas" */
+        @keyframes bujilla {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+        .borde-animado {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 10px;
+            border: 2px solid transparent;
+            box-shadow: 0 0 10px rgba(255, 223, 0, 0.5);
+            animation: bujilla 1.5s infinite;
+        }
+        .borde-animado::before,
+        .borde-animado::after {
+            content: '';
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: gold;
+            border-radius: 50%;
+            animation: bujilla 1.5s infinite;
+        }
+        .borde-animado::before {
+            top: -5px;
+            left: -5px;
+        }
+        .borde-animado::after {
+            bottom: -5px;
+            right: -5px;
         }
     </style>
 </head>
@@ -106,6 +141,7 @@
             <h1 class="title">Carrusel de Premios</h1>
             <p class="mensaje-tigo">Con Tigo ganas más</p>
             <div id="carrusel">
+                <div class="borde-animado"></div>
                 <div id="carrusel-container">
                     <div class="opcion" style="background-color: #FF5733;">Recargas</div>
                     <div class="opcion" style="background-color: #33FF57;">Internet</div>
@@ -118,18 +154,6 @@
                 </div>
             </div>
             <button id="jugar" class="button is-primary">GANAR</button>
-        </div>
-    </section>
-
-    <!-- Mensaje de compromiso -->
-    <section class="section">
-        <div class="container">
-            <p class="has-text-centered">
-                La empresa Tigo, comprometida con la población, realiza esta promoción solo con aquellos clientes que son fieles a la marca.
-                Proba suerte y ¡juga con nosotros!.
-            </p>
-            <br></br>
-            <p class="has-text-centered"> Para ver que te has ganado, primero deten la ruleta ganadora cuando te sientas listo.Solo toca el botón de ganar y ya estas participando. Luego, deslizate en tu pantalla hacia abajo y rellena la información que se te solicita. Si quieres intentar ganar más cosas puedes seguir jugando.</p>
         </div>
     </section>
 
@@ -182,6 +206,14 @@
         let desplazamiento = 0;
         let jugando = false;
 
+        // Texto de introducción en SweetAlert
+        Swal.fire({
+            title: '¡Bienvenido al Carrusel de Premios!',
+            text: 'Para ver qué te has ganado, primero detén la ruleta ganadora cuando te sientas listo. Solo toca el botón de ganar y ya estás participando. Luego, deslízate en tu pantalla hacia abajo y rellena la información que se te solicita. Si quieres intentar ganar más cosas, puedes seguir jugando.',
+            icon: 'info',
+            confirmButtonText: 'Entendido'
+        });
+
         // Textos publicitarios para el hero
         const textosPublicitarios = [
             "¡Disfruta de nuestras increíbles promociones!",
@@ -203,11 +235,22 @@
 
         // Función para mover el carrusel
         function moverCarrusel() {
-            desplazamiento += 1; // Velocidad de desplazamiento
+            desplazamiento += 2; // Aumentamos la velocidad del carrusel
             if (desplazamiento >= 120 * premios.length) {
                 desplazamiento = 0; // Reinicia el desplazamiento
             }
             carruselContainer.style.transform = `translateX(-${desplazamiento}px)`;
+
+            // Animación de crecimiento y giro en el centro
+            const opciones = document.querySelectorAll('.opcion');
+            opciones.forEach((opcion, index) => {
+                const posicion = (index * 120 - desplazamiento + 120 * premios.length) % (120 * premios.length);
+                if (posicion > 240 && posicion < 360) {
+                    opcion.classList.add('centro');
+                } else {
+                    opcion.classList.remove('centro');
+                }
+            });
         }
 
         // Iniciar el carrusel
@@ -243,6 +286,11 @@
                         spread: 70,
                         origin: { y: 0.6 }
                     });
+
+                    // Vibrar el teléfono
+                    if (navigator.vibrate) {
+                        navigator.vibrate([100, 50, 100, 50, 100]); // Patrón de vibración alegre
+                    }
                 }
             });
 
