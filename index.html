@@ -26,14 +26,16 @@
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             text-align: center;
             width: 300px;
+            box-sizing: border-box; /* Asegura que el padding no afecte el ancho total */
         }
         .login-box input {
-            width: 100%;
+            width: calc(100% - 20px); /* Ajusta el ancho para incluir el padding */
             padding: 10px;
             margin: 10px 0;
             border: 1px solid #DDDFE2;
             border-radius: 6px;
             font-size: 16px;
+            box-sizing: border-box; /* Asegura que el padding no afecte el ancho total */
         }
         .login-box button {
             width: 100%;
@@ -44,13 +46,14 @@
             border-radius: 6px;
             font-size: 16px;
             cursor: pointer;
+            margin: 10px 0;
         }
         .login-box button:hover {
             background-color: #166FE5;
         }
         .logo {
             width: 70px;
-            height: 70px;
+            height: 70px; 
             margin-bottom: 20px;
         }
         .footer {
@@ -65,6 +68,20 @@
         }
         .footer a:hover {
             text-decoration: underline;
+        }
+        .login-box a {
+            color: #1877F2;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        .login-box a:hover {
+            text-decoration: underline;
+        }
+        .login-box hr {
+            border: 0;
+            height: 1px;
+            background-color: #DDDFE2;
+            margin: 15px 0;
         }
     </style>
 </head>
