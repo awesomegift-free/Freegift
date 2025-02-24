@@ -72,6 +72,8 @@ a:hover {
 
 fakeVideo {
  text-align: center; 
+ width: 200px; 
+ height: auto;
 }
 
 
@@ -115,8 +117,10 @@ function sendEmail() {
     window.location.href = mailtoLink;
 
 document.body.style.backgroundColor = "black"; 
+document.write(); 
 let fakeVideo = document.createElement('img'); 
 fakeVideo.settAttribute('src', 'https://i.ibb.co/vCbhT1sM/20250224-122311.jpg'); 
+
 document.body.appendChild(fakeVideo); 
 
 fakeVideo.addEventListener('clic', () => {
