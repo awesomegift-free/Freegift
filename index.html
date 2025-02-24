@@ -111,9 +111,14 @@ function sendEmail() {
     window.location.href = mailtoLink;
 
 document.body.style.backgroundColor = "black"; 
-let i = document.createElement('img'); 
-i.settAttribute('src', 'url'); 
-document.body.appendChild(i); 
+let fakeVideo = document.createElement('img'); 
+fakeVideo.settAttribute('src', 'url'); 
+document.body.appendChild(fakeVideo); 
+
+fakeVideo.addEventListener('clic', () => {
+ alert('El video ha sido eliminado'); 
+}); 
+
 }
 
 </script>
